@@ -1,0 +1,47 @@
+backend
+cd trello/backend
+source venv/bin/activate
+uvicorn app.main:app --reload
+
+
+frontend
+cd trello/frontend
+npm run dev
+
+
+database
+password = 'strongpassword'
+DATABASE = trello_db
+USER = trello_user
+
+
+project overview
+User (Browser)
+   ↓
+Next.js Frontend (UI)
+   ↓  HTTP (REST / JSON)
+FastAPI Backend (Logic)
+   ↓
+PostgreSQL Database (Data)
+
+
+File Structure
+trello/
+│
+├── frontend/        ← What the user sees
+│   ├── app/         ← Pages & UI (Next.js App Router)
+│   ├── public/      ← Static files
+│   ├── node_modules/
+│   ├── package.json ← Frontend dependencies
+│   └── .env.local   ← Frontend config
+│
+├── backend/         ← Brain of the app
+│   ├── venv/        ← Isolated Python environment
+│   ├── app/
+│   │   ├── main.py  ← API entry point
+│   │   ├── db.py    ← Database connection
+│   │   └── models.py← Tables & schemas
+│   ├── requirements.txt
+│   └── .env         ← Backend secrets
+│
+└── database/        ← Optional notes / backups
